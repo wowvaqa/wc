@@ -1,8 +1,10 @@
 import React from "react";
 
-import { materialsDensity } from "../assetes/materialsDensity";
+import { useGlobalContext } from "../Context";
 
 const MaterialsView = () => {
+  const { materialsDensityState } = useGlobalContext();
+
   return (
     <>
       <table className="table">
@@ -13,14 +15,15 @@ const MaterialsView = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-          </tr>
-          <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-          </tr>
+          {materialsDensityState.map((materialItem) => {
+            const { id, material, density } = materialItem;
+            return (
+              <tr key={id}>
+                <td>{material}</td>
+                <td>{density}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </>

@@ -1,23 +1,25 @@
 import React, { useState, useContext } from "react";
+import { materialsDensity } from "./assetes/materialsDensity";
 
 // Kontekst aplikacji
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   /**
-   * Testowy useState, jeszcze nie wiem po co tu jest ;-)
+   * Gęstość materiału
    */
-  const [testState, setTestState] = useState(false);
+  const [materialsDensityState, setMaterialsDensityState] =
+    useState(materialsDensity);
 
   /**
    * Zmienia testowy state na przeciwny
    */
-  const changeTestState = () => {
-    setTestState(!testState);
-  };
+  const setMaterialDensityList = () => {};
 
   return (
-    <AppContext.Provider value={{ testState, changeTestState }}>
+    <AppContext.Provider
+      value={{ materialsDensityState, setMaterialDensityList }}
+    >
       {children}
     </AppContext.Provider>
   );
