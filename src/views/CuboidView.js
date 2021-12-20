@@ -1,13 +1,13 @@
 import React from "react";
 
-const Home = () => {
+const CuboidView = () => {
   return (
     <>
       <div className="container">
-        <h1>Obliczenia masy</h1>
+        <h2>Masa blach / płaskowników</h2>
       </div>
     </>
   );
 };
 
-export default Home;
+export default CuboidView;
