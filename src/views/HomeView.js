@@ -4,7 +4,7 @@ const HomeView = () => {
   return (
     <>
       <div className="container">
-        <h2>Obliczenia masy</h2>
+        <h2>Obliczenia wagi elementów</h2>
       </div>
     </>
   );

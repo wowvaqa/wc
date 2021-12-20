@@ -1,31 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
-      <ul className="nav justify-content-center">
-        <li className="nav-item">
-          <a className="nav-link" href="/">
-            Home
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg p-3 mb-5">
+        <div className="container-sm">
+          <a className="navbar-brand" href="/">
+            WC
           </a>
-        </li>
-        <li class="nav-item">
-          <a className="nav-link" aria-current="page" href="/cuboid">
+          <a className="navbar-brand" href="/cuboid">
             Płaskowniki
           </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/roller">
+          <a className="navbar-brand" href="/roller">
             Pręty
           </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/materials">
+          <a className="navbar-brand" href="/materials">
             Materiały
           </a>
-        </li>
-      </ul>
+        </div>
+      </nav>
     </>
   );
 };

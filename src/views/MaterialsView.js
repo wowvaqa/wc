@@ -1,9 +1,28 @@
+import React from "react";
+
+import { materialsDensity } from "../assetes/materialsDensity";
+
 const MaterialsView = () => {
   return (
     <>
-      <div className="container">
-        <h2>Materiały</h2>
-      </div>
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">Materiał</th>
+            <th scope="col">Gęstość</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mark</td>
+            <td>Otto</td>
+          </tr>
+          <tr>
+            <td>Jacob</td>
+            <td>Thornton</td>
+          </tr>
+        </tbody>
+      </table>
     </>
   );
 };
