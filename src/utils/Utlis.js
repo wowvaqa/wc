@@ -21,6 +21,31 @@ export function getCuboidMass(dimA, dimB, dimH, density) {
 }
 
 /**
+ * Zwraca masę walca
+ * @param {*} diameter Średnica
+ * @param {*} dimH Wyskokość
+ * @returns
+ */
+export function getRollerMass(diameter, dimH, density) {
+  console.log("Diameter: " + diameter + " Height: " + dimH);
+  let volume = getRollerVolume(diameter, dimH);
+  console.log("Objętość: " + volume);
+  let mass = (volume * density) / 1000000;
+  console.log("Masa: " + mass);
+  return 0;
+}
+
+/**
+ * Zwraca pole powierzchni całkowitej walca
+ * @param {} diameter Średnica
+ * @param {*} dimH Wysokość
+ * @returns
+ */
+export function getRollerVolume(diameter, dimH) {
+  return Math.PI * Math.pow(parseFloat(diameter) / 2, 2) * parseFloat(dimH);
+}
+
+/**
  * Liczy objętość prostopadłościanu
  * @param {*} dimA Wymiar boku A
  * @param {*} dimB Wymiar boku B

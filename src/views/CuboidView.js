@@ -19,6 +19,9 @@ const CuboidView = () => {
     setCuboidMass(mass);
   };
 
+  /**
+   * Update formularza gęstości po kliknieciu w materiał
+   */
   useEffect(() => {
     refContainer.current.value = currentDensity;
   }, [currentDensity]);
