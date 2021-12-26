@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, ListGroup, Pagination } from "react-bootstrap";
 import MaterialItemView from "./MaterialItemView";
 import { useGlobalContext } from "../Context";
@@ -9,9 +9,19 @@ import { useGlobalContext } from "../Context";
 
 const MaterialSelectView = () => {
   const { materialsDensityState } = useGlobalContext();
+  const [pageArray, usePageArray] = useState([]);
+
+  var tablica = [];
+
+  for (let i = 1; i < parseInt(materialsDensityState.length / 5) + 1; i++) {
+    tablica.push({ id: i });
+  }
 
   return (
     <>
+      <Container>
+        <h3>Gęstość materiałów</h3>
+      </Container>
       <Container>
         <Row>
           <Col>
@@ -28,11 +38,11 @@ const MaterialSelectView = () => {
             <Pagination>
               <Pagination.First />
               <Pagination.Prev />
-              <Pagination.Item active>{1}</Pagination.Item>
-              <Pagination.Item>{2}</Pagination.Item>
-              <Pagination.Item>{3}</Pagination.Item>
-              <Pagination.Item>{4}</Pagination.Item>
-              <Pagination.Ellipsis />
+              {tablica.map((e) => {
+                return (
+                  <Pagination.Item key={e.id}>{parseInt(e.id)}</Pagination.Item>
+                );
+              })}
               <Pagination.Next />
               <Pagination.Last />
             </Pagination>

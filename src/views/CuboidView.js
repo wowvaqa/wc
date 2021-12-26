@@ -6,12 +6,13 @@ const CuboidView = () => {
   return (
     <>
       <Container>
-        <h2>Masa blach / płaskowników</h2>
+        <h1>Masa blach / płaskowników (mm)</h1>
       </Container>
 
       <Container fluid="md">
         <Row>
           <Col>
+            <h3>Wymiary</h3>
             <Form>
               <Form.Group className="mb-3" controlId="cuboidForm.h_value">
                 <Form.Label>Wysokość H:</Form.Label>
