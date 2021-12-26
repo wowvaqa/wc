@@ -96,15 +96,13 @@ const RollerView = () => {
                 />
               </Form.Group>
             </Form>
-            <div className="container">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => countMass()}
-              >
-                Oblicz masę
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => countMass()}
+            >
+              Oblicz masę
+            </button>
           </Col>
           <Col>
             <Container>
