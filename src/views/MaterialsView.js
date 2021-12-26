@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useGlobalContext } from "../Context";
+import { Table } from "react-bootstrap";
 
 const MaterialsView = () => {
   const { materialsDensityState } = useGlobalContext();
@@ -8,11 +9,11 @@ const MaterialsView = () => {
   return (
     <>
       <div className="container">
-        <table className="table table-sm">
+        <Table className="table table-sm">
           <thead>
             <tr>
               <th scope="col">Materiał</th>
-              <th scope="col">Gęstość</th>
+              <th scope="col">Gęstość g/cm3</th>
             </tr>
           </thead>
           <tbody>
@@ -26,7 +27,7 @@ const MaterialsView = () => {
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );

@@ -1,25 +1,18 @@
-import React, { useState } from "react";
-import { ListGroup, Stack, ToggleButton, ButtonGroup, Container, Row, Col } from "react-bootstrap";
+import React from "react";
+import { ListGroup, Container, Row, Col } from "react-bootstrap";
 
-const MaterialItemView = () => {
-  const [materialName, setMaterialName] = useState("Stal");
-  const [materialDensity, setMaterialDensity] = useState("0.75");
+const MaterialItemView = ({ material, density }) => {
   return (
     <>
       <ListGroup.Item action variant="light">
         <Container fluid>
           <Row>
             <Col>
-              <div>Nazwa:</div>
+              <div className="bg-light border">{material}</div>
             </Col>
+
             <Col>
-              <div className="bg-light border">{materialName}</div>
-            </Col>
-            <Col>
-              <div>Gęstość:</div>
-            </Col>
-            <Col>
-              <div className="bg-light border">{materialDensity}</div>
+              <div className="bg-light border">{density}</div>
             </Col>
           </Row>
         </Container>

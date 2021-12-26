@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  ListGroup,
-  Container,
-  Form,
-  Tab,
-  Row,
-  Col,
-  Sonnet,
-  Pagination,
-} from "react-bootstrap";
-import MaterialItemView from "./MaterialItemView";
+import { Container, Form, Row, Col } from "react-bootstrap";
+import MaterialSelectView from "./MaterialSelectView";
 
 const CuboidView = () => {
   return (
@@ -17,6 +8,7 @@ const CuboidView = () => {
       <Container>
         <h2>Masa blach / płaskowników</h2>
       </Container>
+
       <Container fluid="md">
         <Row>
           <Col>
@@ -55,32 +47,7 @@ const CuboidView = () => {
           </Col>
           <Col>
             <Container>
-              <Row>
-                <Col>
-                  <ListGroup>
-                    <MaterialItemView />
-                    <MaterialItemView />
-                    <MaterialItemView />
-                    <MaterialItemView />
-                    <MaterialItemView />
-                  </ListGroup>
-                </Col>
-              </Row>
-              <Row>
-                <div>
-                  <Pagination>
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item active>{1}</Pagination.Item>
-                    <Pagination.Item>{2}</Pagination.Item>
-                    <Pagination.Item>{3}</Pagination.Item>
-                    <Pagination.Item>{4}</Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Next />
-                    <Pagination.Last />
-                  </Pagination>
-                </div>
-              </Row>
+              <MaterialSelectView />
             </Container>
           </Col>
         </Row>
