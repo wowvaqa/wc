@@ -3,15 +3,15 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import HomeView from "./views/HomeView";
-import Navbar from "./Navbar";
 import CuboidView from "./views/CuboidView";
 import RollerView from "./views/RollerView";
 import MaterialsView from "./views/MaterialsView";
+import NavigationBar from "./NavigationBar";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      <NavigationBar />
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/cuboid" element={<CuboidView />} />
