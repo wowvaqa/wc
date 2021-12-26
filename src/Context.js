@@ -11,6 +11,8 @@ const AppProvider = ({ children }) => {
   const [materialsDensityState, setMaterialsDensityState] =
     useState(materialsDensity);
   const [currentDensity, setCurrentDensity] = useState(0);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalText, setModalText] = useState("no text");
 
   return (
     <AppContext.Provider
@@ -19,6 +21,10 @@ const AppProvider = ({ children }) => {
         setMaterialsDensityState,
         currentDensity,
         setCurrentDensity,
+        modalShow,
+        setModalShow,
+        modalText,
+        setModalText,
       }}
     >
       {children}

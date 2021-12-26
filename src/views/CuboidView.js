@@ -6,17 +6,46 @@ import { useGlobalContext } from "../Context";
 
 const CuboidView = () => {
   const refContainer = useRef(null);
-  const { currentDensity, setCurrentDensity } = useGlobalContext();
+  const { currentDensity, setCurrentDensity, setModalShow, setModalText } =
+    useGlobalContext();
   const [dimA, setDimA] = useState(0);
   const [dimB, setDimB] = useState(0);
   const [dimH, setDimH] = useState(0);
   const [cuboidMass, setCuboidMass] = useState(0);
+
   /**
    * Liczy masę prostopadłościanu
    */
   const countMass = () => {
+    handleError();
+
     const mass = getCuboidMass(dimA, dimB, dimH, currentDensity);
     setCuboidMass(mass);
+  };
+
+  const handleError = () => {
+    if (Number.isNaN(dimA) || dimA === 0) {
+      setModalText("Niepoprawny wymiar A - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(dimB) || dimB === 0) {
+      setModalText("Niepoprawny wymiar B - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(dimH) || dimH === 0) {
+      setModalText("Niepoprawny wymiar H - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(currentDensity) || currentDensity === 0) {
+      setModalText(
+        "Niepoprawna gęstość materiału - wpisz poprawną wartość lub wybierz materiał z listy!"
+      );
+      setModalShow(true);
+    }
+    return;
   };
 
   /**
