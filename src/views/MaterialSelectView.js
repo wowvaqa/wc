@@ -12,15 +12,23 @@ const MaterialSelectView = () => {
   const [actualPage, setActualPage] = useState(0);
   const [actualMaterials, setActualMaterials] = useState([]);
 
-  var tablica = [];
+  const tablica = [];
   for (let i = 1; i < parseInt(materialsDensityState.length / 5) + 1; i++) {
     tablica.push({ id: i });
   }
 
-  const setupActualMaterials = () => {
+  useEffect(() => {
+    setupActualMaterials(0);
+  }, []);
+
+  /**
+   * Uaktualnienie widoku listy materiałów do wyboru
+   * @param {*} page : ;
+   */
+  const setupActualMaterials = (page) => {
     var newActualMaterials = [];
 
-    let startIndex = actualPage * 5;
+    let startIndex = page * 5;
     let endIndex = startIndex + 5;
     if (endIndex > materialsDensityState.length)
       endIndex = materialsDensityState.length;
@@ -33,19 +41,25 @@ const MaterialSelectView = () => {
     console.log(actualMaterials);
   };
 
+  /**
+   * Następna strona z widoku wyboru materiałów
+   */
   const nextPage = () => {
-    setActualPage(actualPage + 1);
-    if (actualPage > parseInt(materialsDensityState.length / 5))
-      setActualPage(parseInt(materialsDensityState.length / 5));
-    console.log("Akutalna strona: " + actualPage);
-    setupActualMaterials();
+    let page = actualPage + 1;
+    if (page > parseInt(materialsDensityState.length / 5))
+      page = parseInt(materialsDensityState.length / 5);
+    setActualPage(page);
+    setupActualMaterials(page);
   };
 
+  /**
+   * Poprzednia strona z widoku wyboru materiałów
+   */
   const prevPage = () => {
-    setActualPage(actualPage - 1);
-    if (actualPage < 0) setActualPage(0);
-    console.log("Akutalna strona: " + actualPage);
-    setupActualMaterials();
+    let page = actualPage - 1;
+    if (page < 0) page = 0;
+    setActualPage(page);
+    setupActualMaterials(page);
   };
 
   return (
@@ -67,15 +81,9 @@ const MaterialSelectView = () => {
         <Row>
           <div>
             <Pagination>
-              <Pagination.First />
               <Pagination.Prev onClick={prevPage} />
-              {tablica.map((e) => {
-                return (
-                  <Pagination.Item key={e.id}>{parseInt(e.id)}</Pagination.Item>
-                );
-              })}
+              <Pagination.Item>{actualPage}</Pagination.Item>
               <Pagination.Next onClick={nextPage} />
-              <Pagination.Last />
             </Pagination>
           </div>
         </Row>
