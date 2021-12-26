@@ -6,7 +6,8 @@ import { useGlobalContext } from "../Context";
 
 const RollerView = () => {
   const refContainer = useRef(null);
-  const { currentDensity, setCurrentDensity } = useGlobalContext();
+  const { currentDensity, setCurrentDensity, setModalShow, setModalText } =
+    useGlobalContext();
   const [diameter, setDiameter] = useState(0);
   const [dimH, setDimH] = useState(0);
   const [rollerMass, setRollerMass] = useState(0);
@@ -14,8 +15,31 @@ const RollerView = () => {
    * Liczy masę walca
    */
   const countMass = () => {
+    handleError();
     const mass = getRollerMass(diameter, dimH, currentDensity);
     setRollerMass(mass);
+  };
+
+  /**
+   * Sprawdza czy wartości wymiarów prostopadłościanu są poprawne
+   */
+  const handleError = () => {
+    if (Number.isNaN(diameter) || diameter === 0) {
+      setModalText("Niepoprawna średnica - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(dimH) || dimH === 0) {
+      setModalText("Niepoprawny wymiar H - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(currentDensity) || currentDensity === 0) {
+      setModalText(
+        "Niepoprawna gęstość materiału - wpisz poprawną wartość lub wybierz materiał z listy!"
+      );
+      setModalShow(true);
+    }
   };
 
   /**

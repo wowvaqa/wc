@@ -5,13 +5,14 @@ import { materialsDensity } from "./assetes/materialsDensity";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  /**
-   * Gęstość materiału
-   */
+  // Lista materiałów i ich gęstości
   const [materialsDensityState, setMaterialsDensityState] =
     useState(materialsDensity);
+  // Aktualna gęstość materiału do obliczenia masy prostopadłościanu oraz walz=ca
   const [currentDensity, setCurrentDensity] = useState(0);
+  // Okno modlane wyświetljące komunikaty
   const [modalShow, setModalShow] = useState(false);
+  // Tekst w oknie modalnym
   const [modalText, setModalText] = useState("no text");
 
   return (

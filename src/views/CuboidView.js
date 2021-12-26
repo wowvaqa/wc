@@ -23,6 +23,9 @@ const CuboidView = () => {
     setCuboidMass(mass);
   };
 
+  /**
+   * Sprawdza czy wartości wymiarów prostopadłościanu są poprawne
+   */
   const handleError = () => {
     if (Number.isNaN(dimA) || dimA === 0) {
       setModalText("Niepoprawny wymiar A - sprawdź!");
@@ -45,7 +48,6 @@ const CuboidView = () => {
       );
       setModalShow(true);
     }
-    return;
   };
 
   /**
