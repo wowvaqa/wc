@@ -3,7 +3,6 @@ import { Container, Row, Col, ListGroup, Pagination } from "react-bootstrap";
 import MaterialItemView from "./MaterialItemView";
 import { useGlobalContext } from "../Context";
 
-
 /**
  * Widok wyboru materiału przy obliczeniach masy
  */
@@ -12,7 +11,6 @@ const MaterialSelectView = () => {
   const { materialsDensityState } = useGlobalContext();
   const [actualPage, setActualPage] = useState(0);
   const [actualMaterials, setActualMaterials] = useState([]);
-  const [currentDensity, setCurrentDensity] = useState(0);
 
   const tablica = [];
   for (let i = 1; i < parseInt(materialsDensityState.length / 5) + 1; i++) {
@@ -64,21 +62,10 @@ const MaterialSelectView = () => {
     setupActualMaterials(page);
   };
 
-  /**
-   * Uaktualnia aktualną gęstość materiału po kliknięciu w materiał z listy dostępnych
-   * @param {} density
-   */
-  const updateCurrentDensity = (density) => {
-    setCurrentDensity(density);
-    console.log(density);
-  };
-
-  
-
   return (
     <>
       <Container>
-        <h3>Gęstość materiałów</h3>
+        <h3>Materiały</h3>
       </Container>
       <Container>
         <Row>
@@ -86,13 +73,7 @@ const MaterialSelectView = () => {
             <ListGroup>
               {actualMaterials.map((materialItem) => {
                 const { id } = materialItem;
-                return (
-                  <MaterialItemView
-                    key={id}
-                    {...materialItem}
-                    updateCurrentDensity={updateCurrentDensity}
-                  />
-                );
+                return <MaterialItemView key={id} {...materialItem} />;
               })}
             </ListGroup>
           </Col>

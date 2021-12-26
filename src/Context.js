@@ -10,6 +10,7 @@ const AppProvider = ({ children }) => {
    */
   const [materialsDensityState, setMaterialsDensityState] =
     useState(materialsDensity);
+  const [currentDensity, setCurrentDensity] = useState(0);
 
   /**
    * Zmienia testowy state na przeciwny
@@ -18,7 +19,12 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ materialsDensityState, setMaterialDensityList }}
+      value={{
+        materialsDensityState,
+        setMaterialDensityList,
+        currentDensity,
+        setCurrentDensity,
+      }}
     >
       {children}
     </AppContext.Provider>

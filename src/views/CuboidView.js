@@ -1,9 +1,11 @@
 import React from "react";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
-import { countCuboidArea } from "../utils/Utlis";
+import { countCuboidMass } from "../utils/Utlis";
+import { useGlobalContext } from "../Context";
 
 const CuboidView = () => {
+  const { currentDensity } = useGlobalContext();
   /**
    * Liczy pole powierzchni prostopadłościanu
    * @param {*} dim_a
@@ -12,7 +14,7 @@ const CuboidView = () => {
    */
   const countMass = (dim_a, dim_b, dim_h) => {
     console.log("KLIK");
-    console.log(countCuboidArea(dim_a, dim_b, dim_h));
+    console.log(countCuboidMass(dim_a, dim_b, dim_h, currentDensity));
   };
 
   return (
@@ -24,7 +26,7 @@ const CuboidView = () => {
       <Container fluid="md">
         <Row>
           <Col>
-            <h3>Wymiary</h3>
+            <h3>Wymiary elementu</h3>
             <Form>
               <Form.Group className="mb-3" controlId="cuboidForm.h_value">
                 <Form.Label>Wysokość H:</Form.Label>

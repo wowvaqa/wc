@@ -7,8 +7,10 @@ const Utlis = () => {};
  * @param {*} dim_H Wymiar wysokości H
  * @returns
  */
-export function countCuboidArea(dim_A, dim_B, dim_H) {
-  console.log("Witam");
+export function countCuboidMass(dim_A, dim_B, dim_H, density) {
+  console.log(
+    "A: " + dim_A + " B: " + dim_B + " H: " + dim_H + " DENSITY: " + density
+  );
   return parseInt(dim_A) * parseInt(dim_B) * parseInt(dim_H);
 }
 

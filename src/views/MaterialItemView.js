@@ -1,14 +1,17 @@
 import React from "react";
 import { ListGroup, Container, Row, Col } from "react-bootstrap";
+import { useGlobalContext } from "../Context";
 
-const MaterialItemView = ({ material, density, updateCurrentDensity }) => {
+const MaterialItemView = ({ material, density }) => {
+  const { setCurrentDensity } = useGlobalContext();
+
   return (
     <>
       <ListGroup.Item
         action
         variant="light"
         onClick={() => {
-          updateCurrentDensity(density);
+          setCurrentDensity(density);
         }}
       >
         <Container fluid>
