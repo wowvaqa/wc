@@ -7,11 +7,28 @@ const Utlis = () => {};
  * @param {*} dim_H Wymiar wysokości H
  * @returns
  */
-export function countCuboidMass(dim_A, dim_B, dim_H, density) {
+export function getCuboidMass(dimA, dimB, dimH, density) {
   console.log(
-    "A: " + dim_A + " B: " + dim_B + " H: " + dim_H + " DENSITY: " + density
+    "A: " + dimA + " B: " + dimB + " H: " + dimH + " DENSITY: " + density
   );
-  return parseInt(dim_A) * parseInt(dim_B) * parseInt(dim_H);
+
+  let volume = getCuboidVolume(dimA, dimB, dimH);
+  console.log("Objętość: " + volume);
+  let mass = (volume * density) / 1000000;
+  console.log("Masa: " + mass);
+
+  return mass;
+}
+
+/**
+ * Liczy objętość prostopadłościanu
+ * @param {*} dimA Wymiar boku A
+ * @param {*} dimB Wymiar boku B
+ * @param {*} dimH Wysokość
+ * @returns Objętość [jed]3
+ */
+export function getCuboidVolume(dimA, dimB, dimH) {
+  return parseFloat(dimA) * parseFloat(dimB) * parseFloat(dimH);
 }
 
 export default Utlis;

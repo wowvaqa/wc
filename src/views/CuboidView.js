@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
-import { countCuboidMass } from "../utils/Utlis";
+import { getCuboidMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 
 const CuboidView = () => {
   const { currentDensity } = useGlobalContext();
+  const [dimA, setDimA] = useState(0);
+  const [dimB, setDimB] = useState(0);
+  const [dimH, setDimH] = useState(0);
   /**
    * Liczy pole powierzchni prostopadłościanu
    * @param {*} dim_a
    * @param {*} dim_b
    * @param {*} dim_h
    */
-  const countMass = (dim_a, dim_b, dim_h) => {
+  const countMass = () => {
     console.log("KLIK");
-    console.log(countCuboidMass(dim_a, dim_b, dim_h, currentDensity));
+    console.log(getCuboidMass(dimA, dimB, dimH, currentDensity));
   };
 
   return (
@@ -28,15 +31,33 @@ const CuboidView = () => {
           <Col>
             <h3>Wymiary elementu</h3>
             <Form>
-              <Form.Group className="mb-3" controlId="cuboidForm.h_value">
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.h_value"
+                onChange={(e) => {
+                  setDimH(parseFloat(e.target.value));
+                }}
+              >
                 <Form.Label>Wysokość H:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="cuboidForm.a_value">
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.a_value"
+                onChange={(e) => {
+                  setDimA(parseFloat(e.target.value));
+                }}
+              >
                 <Form.Label>Długość boku A:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="cuboidForm.b_value">
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.b_value"
+                onChange={(e) => {
+                  setDimB(parseFloat(e.target.value));
+                }}
+              >
                 <Form.Label>Długość boku B:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
@@ -45,7 +66,7 @@ const CuboidView = () => {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => countMass(1, 1, 1)}
+                onClick={() => countMass()}
               >
                 Oblicz masę
               </button>

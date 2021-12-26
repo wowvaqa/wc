@@ -12,13 +12,9 @@ const MaterialSelectView = () => {
   const [actualPage, setActualPage] = useState(0);
   const [actualMaterials, setActualMaterials] = useState([]);
 
-  const tablica = [];
-  for (let i = 1; i < parseInt(materialsDensityState.length / 5) + 1; i++) {
-    tablica.push({ id: i });
-  }
-
   useEffect(() => {
     setupActualMaterials(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
