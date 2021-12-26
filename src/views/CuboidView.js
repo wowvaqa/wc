@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
 import { getCuboidMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 
 const CuboidView = () => {
-  const { currentDensity } = useGlobalContext();
+  const refContainer = useRef(null);
+  const { currentDensity, setCurrentDensity } = useGlobalContext();
   const [dimA, setDimA] = useState(0);
   const [dimB, setDimB] = useState(0);
   const [dimH, setDimH] = useState(0);
+  const [cuboidMass, setCuboidMass] = useState(0);
   /**
-   * Liczy pole powierzchni prostopadłościanu
-   * @param {*} dim_a
-   * @param {*} dim_b
-   * @param {*} dim_h
+   * Liczy masę prostopadłościanu
    */
   const countMass = () => {
-    console.log("KLIK");
-    console.log(getCuboidMass(dimA, dimB, dimH, currentDensity));
+    const mass = getCuboidMass(dimA, dimB, dimH, currentDensity);
+    setCuboidMass(mass);
   };
+
+  useEffect(() => {
+    refContainer.current.value = currentDensity;
+  }, [currentDensity]);
 
   return (
     <>
       <Container>
-        <h1>Masa blach / płaskowników (mm)</h1>
+        <h1>Masa blach / płaskowników</h1>
       </Container>
 
       <Container fluid="md">
         <Row>
           <Col>
-            <h3>Wymiary elementu</h3>
+            <h4>Wymiary elementu [mm]</h4>
             <Form>
               <Form.Group
                 className="mb-3"
@@ -61,6 +64,20 @@ const CuboidView = () => {
                 <Form.Label>Długość boku B:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.density_value"
+                onChange={(e) => {
+                  setCurrentDensity(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Gęstość [g/cm3]:</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="0.0"
+                  ref={refContainer}
+                />
+              </Form.Group>
             </Form>
             <div className="container">
               <button
@@ -78,6 +95,10 @@ const CuboidView = () => {
             </Container>
           </Col>
         </Row>
+      </Container>
+      <br></br>
+      <Container>
+        <h1>Masa: {cuboidMass} kg</h1>
       </Container>
     </>
   );
