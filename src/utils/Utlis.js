@@ -32,7 +32,7 @@ export function getRollerMass(diameter, dimH, density) {
   console.log("Objętość: " + volume);
   let mass = (volume * density) / 1000000;
   console.log("Masa: " + mass);
-  return 0;
+  return mass;
 }
 
 /**

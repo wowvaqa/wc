@@ -61,7 +61,7 @@ const MaterialSelectView = () => {
   return (
     <>
       <Container>
-        <h3>Materiały</h3>
+        <h4>Gęstość materiałów [g/cm3]</h4>
       </Container>
       <Container>
         <Row>
