@@ -3,6 +3,7 @@ import { Container, Row, Col, ListGroup, Pagination } from "react-bootstrap";
 import MaterialItemView from "./MaterialItemView";
 import { useGlobalContext } from "../Context";
 
+
 /**
  * Widok wyboru materiału przy obliczeniach masy
  */
@@ -71,6 +72,8 @@ const MaterialSelectView = () => {
     setCurrentDensity(density);
     console.log(density);
   };
+
+  
 
   return (
     <>

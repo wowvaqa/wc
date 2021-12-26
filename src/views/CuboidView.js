@@ -1,8 +1,20 @@
 import React from "react";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
+import { countCuboidArea } from "../utils/Utlis";
 
 const CuboidView = () => {
+  /**
+   * Liczy pole powierzchni prostopadłościanu
+   * @param {*} dim_a
+   * @param {*} dim_b
+   * @param {*} dim_h
+   */
+  const countMass = (dim_a, dim_b, dim_h) => {
+    console.log("KLIK");
+    console.log(countCuboidArea(dim_a, dim_b, dim_h));
+  };
+
   return (
     <>
       <Container>
@@ -28,7 +40,11 @@ const CuboidView = () => {
               </Form.Group>
             </Form>
             <div className="container">
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => countMass(1, 1, 1)}
+              >
                 Oblicz masę
               </button>
             </div>
