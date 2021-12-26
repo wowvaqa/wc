@@ -1,10 +1,16 @@
 import React from "react";
 import { ListGroup, Container, Row, Col } from "react-bootstrap";
 
-const MaterialItemView = ({ material, density }) => {
+const MaterialItemView = ({ material, density, updateCurrentDensity }) => {
   return (
     <>
-      <ListGroup.Item action variant="light">
+      <ListGroup.Item
+        action
+        variant="light"
+        onClick={() => {
+          updateCurrentDensity(density);
+        }}
+      >
         <Container fluid>
           <Row>
             <Col>

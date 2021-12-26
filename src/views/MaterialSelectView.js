@@ -11,6 +11,7 @@ const MaterialSelectView = () => {
   const { materialsDensityState } = useGlobalContext();
   const [actualPage, setActualPage] = useState(0);
   const [actualMaterials, setActualMaterials] = useState([]);
+  const [currentDensity, setCurrentDensity] = useState(0);
 
   const tablica = [];
   for (let i = 1; i < parseInt(materialsDensityState.length / 5) + 1; i++) {
@@ -62,6 +63,15 @@ const MaterialSelectView = () => {
     setupActualMaterials(page);
   };
 
+  /**
+   * Uaktualnia aktualną gęstość materiału po kliknięciu w materiał z listy dostępnych
+   * @param {} density
+   */
+  const updateCurrentDensity = (density) => {
+    setCurrentDensity(density);
+    console.log(density);
+  };
+
   return (
     <>
       <Container>
@@ -73,7 +83,13 @@ const MaterialSelectView = () => {
             <ListGroup>
               {actualMaterials.map((materialItem) => {
                 const { id } = materialItem;
-                return <MaterialItemView key={id} {...materialItem} />;
+                return (
+                  <MaterialItemView
+                    key={id}
+                    {...materialItem}
+                    updateCurrentDensity={updateCurrentDensity}
+                  />
+                );
               })}
             </ListGroup>
           </Col>
