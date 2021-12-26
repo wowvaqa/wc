@@ -11,6 +11,7 @@ const NavigationBar = () => {
             <Nav.Link href="/cuboid">Płaskowniki</Nav.Link>
             <Nav.Link href="/roller">Pręty</Nav.Link>
             <Nav.Link href="/materials">Materiały</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

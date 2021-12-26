@@ -10,6 +10,7 @@ import NavigationBar from "./NavigationBar";
 import AppModal from "./views/AppModal";
 
 import { useGlobalContext } from "./Context";
+import About from "./views/About";
 
 function App() {
   const { modalShow, setModalShow, modalText } = useGlobalContext();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/cuboid" element={<CuboidView />} />
           <Route path="/roller" element={<RollerView />} />
           <Route path="/materials" element={<MaterialsView />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Router>
     </>
