@@ -9,6 +9,7 @@ import { useGlobalContext } from "../Context";
 
 const MaterialSelectView = () => {
   const { materialsDensityState } = useGlobalContext();
+
   return (
     <>
       <Container>

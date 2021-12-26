@@ -13,37 +13,24 @@ const CuboidView = () => {
         <Row>
           <Col>
             <Form>
-              <label for="dim_1" class="form-label">
-                Wysokość H:
-              </label>
-              <input
-                type="dim_1"
-                class="form-control"
-                id="dim_1"
-                aria-describedby="dimension1"
-              />
-              <label for="dim_0" class="form-label">
-                Długość boku A:
-              </label>
-              <input
-                type="dim_0"
-                class="form-control"
-                id="dim_0"
-                aria-describedby="dimension0"
-              />
-              <label for="dim_1" class="form-label">
-                Długość boku B:
-              </label>
-              <input
-                type="dim_1"
-                class="form-control"
-                id="dim_1"
-                aria-describedby="dimension1"
-              />
-              <div id="dimensionHelp" class="form-text">
-                Wszystkie długości podaj proszę w [mm]
-              </div>
+              <Form.Group className="mb-3" controlId="cuboidForm.h_value">
+                <Form.Label>Wysokość H:</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="cuboidForm.a_value">
+                <Form.Label>Długość boku A:</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="cuboidForm.b_value">
+                <Form.Label>Długość boku B:</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
             </Form>
+            <div className="container">
+              <button type="button" className="btn btn-primary">
+                Oblicz masę
+              </button>
+            </div>
           </Col>
           <Col>
             <Container>
@@ -52,12 +39,6 @@ const CuboidView = () => {
           </Col>
         </Row>
       </Container>
-
-      <div className="container">
-        <button type="button" class="btn btn-primary">
-          Oblicz masę
-        </button>
-      </div>
     </>
   );
 };
