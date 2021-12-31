@@ -7,6 +7,7 @@ const About = () => {
       <Container>
         <h2>Autor</h2>
         <p>Łukasz Wawrzyniak</p>
+        <p>wowvaqa@gmail.com</p>
       </Container>
     </>
   );
