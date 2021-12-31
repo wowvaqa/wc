@@ -9,8 +9,8 @@ const HomeView = () => {
           Masa teoretyczna liczona jest dla wymiaru nominalnego i nie uwzględnia
           tolerancji wykonania.
           <br></br>
-          Do wyliczenia dokładnej masy wyrobu konieczna jest gęstość konkretnego
-          stupu np. stali, mosiądzu itp.
+          Do wyliczenia dokładnej masy wyrobu konieczna jest gęstość stopu np.
+          stali, mosiądzu itp.
           <br></br>
           Wybierz kategorię z menu
         </p>
