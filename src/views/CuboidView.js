@@ -3,6 +3,7 @@ import { Container, Form, Row, Col } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
 import { getCuboidMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
+import WeightSumView from "./WeightSumView";
 
 /**
  * Widok komponentu masy prostopadłościanu
@@ -10,8 +11,14 @@ import { useGlobalContext } from "../Context";
  */
 const CuboidView = () => {
   const refContainer = useRef(null);
-  const { currentDensity, setCurrentDensity, setModalShow, setModalText } =
-    useGlobalContext();
+  const {
+    currentDensity,
+    setCurrentDensity,
+    setModalShow,
+    setModalText,
+    weightSum,
+    setWeightSum,
+  } = useGlobalContext();
   const [dimA, setDimA] = useState(0);
   const [dimB, setDimB] = useState(0);
   const [dimH, setDimH] = useState(0);
@@ -25,6 +32,23 @@ const CuboidView = () => {
 
     const mass = getCuboidMass(dimA, dimB, dimH, currentDensity);
     setCuboidMass(mass);
+    addToWeightSum(dimH, dimA, dimB, mass);
+  };
+
+  /**
+   * Tworzy i dodaje element do listy wszystkich elementów
+   * @param {*} dimH Wysokość
+   * @param {*} dimA Wymiar A
+   * @param {*} dimB Wymiar B
+   * @param {*} mass Masa
+   */
+  const addToWeightSum = (dimH, dimA, dimB, mass) => {
+    const newItem = {
+      id: weightSum.length + 1,
+      dimension: dimH + "x" + dimA + "x" + dimB,
+      elementMass: mass,
+    };
+    setWeightSum([...weightSum, newItem]);
   };
 
   /**
@@ -136,6 +160,7 @@ const CuboidView = () => {
       <Container>
         <h1>Masa: {cuboidMass} kg</h1>
       </Container>
+      <WeightSumView></WeightSumView>
     </>
   );
 };

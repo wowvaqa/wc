@@ -3,6 +3,7 @@ import { Container, Form, Row, Col } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
 import { getRollerMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
+import WeightSumView from "./WeightSumView";
 
 /**
  * Widok komponentu masy walca
@@ -10,8 +11,14 @@ import { useGlobalContext } from "../Context";
  */
 const RollerView = () => {
   const refContainer = useRef(null);
-  const { currentDensity, setCurrentDensity, setModalShow, setModalText } =
-    useGlobalContext();
+  const {
+    currentDensity,
+    setCurrentDensity,
+    setModalShow,
+    setModalText,
+    weightSum,
+    setWeightSum,
+  } = useGlobalContext();
   const [diameter, setDiameter] = useState(0);
   const [dimH, setDimH] = useState(0);
   const [rollerMass, setRollerMass] = useState(0);
@@ -22,6 +29,23 @@ const RollerView = () => {
     handleError();
     const mass = getRollerMass(diameter, dimH, currentDensity);
     setRollerMass(mass);
+    addToWeightSum(diameter, dimH, mass);
+  };
+
+  /**
+   * Tworzy i dodaje element wg zadanych parametrów do listy przechowujące wszystkie elemnty
+   * @param {*} diameter Średnica
+   * @param {*} dimH Wysokość / długość
+   * @param {*} mass Masa
+   */
+  const addToWeightSum = (diameter, dimH, mass) => {
+    const newItem = {
+      id: weightSum.length + 1,
+      dimension: diameter + "x" + dimH,
+      elementMass: mass,
+    };
+
+    setWeightSum([...weightSum, newItem]);
   };
 
   /**
@@ -119,6 +143,7 @@ const RollerView = () => {
       <Container>
         <h1>Masa: {rollerMass} kg</h1>
       </Container>
+      <WeightSumView></WeightSumView>
     </>
   );
 };
