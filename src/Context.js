@@ -14,6 +14,8 @@ const AppProvider = ({ children }) => {
   const [modalShow, setModalShow] = useState(false);
   // Tekst w oknie modalnym
   const [modalText, setModalText] = useState("no text");
+  // Lista zawierająca masy poszczególnych materiałów, tworzących sume masy materiałów
+  const [weightSum, setWeightSum] = useState([]);
 
   return (
     <AppContext.Provider
@@ -26,6 +28,8 @@ const AppProvider = ({ children }) => {
         setModalShow,
         modalText,
         setModalText,
+        weightSum,
+        setWeightSum,
       }}
     >
       {children}

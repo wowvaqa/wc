@@ -4,6 +4,10 @@ import MaterialSelectView from "./MaterialSelectView";
 import { getRollerMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 
+/**
+ * Widok komponentu masy walca
+ * @returns Widok komponentu masy walca
+ */
 const RollerView = () => {
   const refContainer = useRef(null);
   const { currentDensity, setCurrentDensity, setModalShow, setModalText } =

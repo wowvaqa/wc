@@ -4,6 +4,10 @@ import MaterialSelectView from "./MaterialSelectView";
 import { getCuboidMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 
+/**
+ * Widok komponentu masy prostopadłościanu
+ * @returns Widok komponentu masy prostopadłościanu
+ */
 const CuboidView = () => {
   const refContainer = useRef(null);
   const { currentDensity, setCurrentDensity, setModalShow, setModalText } =

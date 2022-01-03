@@ -2,6 +2,11 @@ import React from "react";
 import { ListGroup, Container, Row, Col } from "react-bootstrap";
 import { useGlobalContext } from "../Context";
 
+/**
+ * Widok elementu tabeli materiałów.
+ * @param {*} param0 Nazwa materiału, gęstość materiału
+ * @returns Widok
+ */
 const MaterialItemView = ({ material, density }) => {
   const { setCurrentDensity } = useGlobalContext();
 
