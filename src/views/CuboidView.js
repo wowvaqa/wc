@@ -4,6 +4,7 @@ import MaterialSelectView from "./MaterialSelectView";
 import { getCuboidMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 import WeightSumView from "./WeightSumView";
+import cuboidImage from "../assetes/cuboid.svg";
 
 /**
  * Widok komponentu masy prostopadłościanu
@@ -90,11 +91,11 @@ const CuboidView = () => {
       <Container>
         <h1>Masa blach / płaskowników</h1>
       </Container>
-
       <Container fluid="md">
         <Row>
           <Col>
             <h4>Wymiary elementu [mm]</h4>
+
             <Form>
               <Form.Group
                 className="mb-3"
@@ -103,7 +104,7 @@ const CuboidView = () => {
                   setDimH(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Wysokość H:</Form.Label>
+                <Form.Label>Wysokość [H]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
               <Form.Group
@@ -113,7 +114,7 @@ const CuboidView = () => {
                   setDimA(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Długość boku A:</Form.Label>
+                <Form.Label>Długość boku [A]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
               <Form.Group
@@ -123,7 +124,7 @@ const CuboidView = () => {
                   setDimB(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Długość boku B:</Form.Label>
+                <Form.Label>Długość boku [B]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
               <Form.Group
@@ -151,6 +152,11 @@ const CuboidView = () => {
           </Col>
           <Col>
             <Container>
+              <img
+                src={cuboidImage}
+                alt="cocktail db logo"
+                className="weightElement"
+              />
               <MaterialSelectView />
             </Container>
           </Col>

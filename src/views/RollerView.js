@@ -4,6 +4,7 @@ import MaterialSelectView from "./MaterialSelectView";
 import { getRollerMass } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 import WeightSumView from "./WeightSumView";
+import rollerImage from "../assetes/roller.svg";
 
 /**
  * Widok komponentu masy walca
@@ -95,7 +96,7 @@ const RollerView = () => {
                   setDimH(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Wysokość H:</Form.Label>
+                <Form.Label>Wysokość [H]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
               <Form.Group
@@ -105,7 +106,7 @@ const RollerView = () => {
                   setDiameter(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Średnica:</Form.Label>
+                <Form.Label>Średnica [d]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
 
@@ -134,6 +135,11 @@ const RollerView = () => {
           </Col>
           <Col>
             <Container>
+              <img
+                src={rollerImage}
+                alt="cocktail db logo"
+                className="weightElement"
+              />
               <MaterialSelectView />
             </Container>
           </Col>
