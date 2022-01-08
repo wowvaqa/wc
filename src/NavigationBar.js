@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import rollerIcon from "./assetes/rollerIcon.svg";
 
 const NavigationBar = () => {
   return (

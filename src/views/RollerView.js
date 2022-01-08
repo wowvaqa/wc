@@ -1,7 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Form, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Row,
+  Col,
+  ToggleButton,
+  Button,
+} from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
 import { getRollerMass } from "../utils/Utlis";
+import { roundNumber } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 import WeightSumView from "./WeightSumView";
 import rollerImage from "../assetes/roller.svg";
@@ -23,12 +31,19 @@ const RollerView = () => {
   const [diameter, setDiameter] = useState(0);
   const [dimH, setDimH] = useState(0);
   const [rollerMass, setRollerMass] = useState(0);
+  const [roundMass, setRoundMass] = useState(false);
+
   /**
    * Liczy masę walca
    */
   const countMass = () => {
     handleError();
-    const mass = getRollerMass(diameter, dimH, currentDensity);
+    let mass = getRollerMass(diameter, dimH, currentDensity);
+
+    if (roundMass) {
+      mass = roundNumber(mass, 2);
+    }
+
     setRollerMass(mass);
     addToWeightSum(diameter, dimH, mass);
   };
@@ -125,13 +140,31 @@ const RollerView = () => {
                 />
               </Form.Group>
             </Form>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => countMass()}
-            >
-              Oblicz masę
-            </button>
+            <Row>
+              <Col>
+                <ToggleButton
+                  className="mb-2"
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-primary"
+                  checked={roundMass}
+                  value="1"
+                  onChange={(e) => setRoundMass(e.currentTarget.checked)}
+                >
+                  Zaokrąglij wynik
+                </ToggleButton>
+              </Col>
+              <Col sm={8}>
+                <Button
+                  variant="success"
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => countMass()}
+                >
+                  Oblicz masę
+                </Button>
+              </Col>
+            </Row>
           </Col>
           <Col>
             <Container>

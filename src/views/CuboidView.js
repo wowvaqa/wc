@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Form, Row, Col } from "react-bootstrap";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
 import { getCuboidMass } from "../utils/Utlis";
+import { roundNumber } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 import WeightSumView from "./WeightSumView";
 import cuboidImage from "../assetes/cuboid.svg";
+import { ToggleButton } from "react-bootstrap";
 
 /**
  * Widok komponentu masy prostopadłościanu
@@ -20,6 +22,7 @@ const CuboidView = () => {
     weightSum,
     setWeightSum,
   } = useGlobalContext();
+  const [roundMass, setRoundMass] = useState(false);
   const [dimA, setDimA] = useState(0);
   const [dimB, setDimB] = useState(0);
   const [dimH, setDimH] = useState(0);
@@ -30,8 +33,11 @@ const CuboidView = () => {
    */
   const countMass = () => {
     handleError();
+    let mass = getCuboidMass(dimA, dimB, dimH, currentDensity);
+    if (roundMass) {
+      mass = roundNumber(mass, 2);
+    }
 
-    const mass = getCuboidMass(dimA, dimB, dimH, currentDensity);
     setCuboidMass(mass);
     addToWeightSum(dimH, dimA, dimB, mass);
   };
@@ -142,13 +148,31 @@ const CuboidView = () => {
                 />
               </Form.Group>
             </Form>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => countMass()}
-            >
-              Oblicz masę
-            </button>
+            <Row>
+              <Col>
+                <ToggleButton
+                  className="mb-2"
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-primary"
+                  checked={roundMass}
+                  value="1"
+                  onChange={(e) => setRoundMass(e.currentTarget.checked)}
+                >
+                  Zaokrąglij wynik
+                </ToggleButton>
+              </Col>
+              <Col sm={8}>
+                  <Button
+                    variant="success"
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => countMass()}
+                  >
+                    Oblicz masę
+                  </Button>
+              </Col>
+            </Row>
           </Col>
           <Col>
             <Container>
