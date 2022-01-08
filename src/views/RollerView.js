@@ -111,7 +111,7 @@ const RollerView = () => {
                   setDimH(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Wysokość [H]:</Form.Label>
+                <Form.Label>Długość [L]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
               <Form.Group

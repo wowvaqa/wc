@@ -21,6 +21,13 @@
      id="ellipse2719"
      style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:1;-inkscape-stroke:none;paint-order:fill markers stroke"
      d="m 169.25245,101.03828 c 22.25204,-0.11111 39.76914,-22.161476 39.76914,-48.739665 0,-26.578188 -17.5171,-48.6280388 -39.76914,-48.7391424 v 4.7888548 c 19.06264,0.1137396 34.97977,19.4734666 34.97977,43.9502876 0,24.476821 -15.91713,43.837066 -34.97977,43.950805 z" />
+  <ellipse
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.76249985;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+     id="ellipse2723"
+     cx="43.624237"
+     cy="52.379288"
+     rx="30.337862"
+     ry="39.247833" />
   <path
      style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.78895818;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="M 41.992076,5.9489662 H 169.28349"
