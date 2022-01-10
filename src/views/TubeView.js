@@ -115,16 +115,6 @@ const TubeView = () => {
               </Form.Group>
               <Form.Group
                 className="mb-3"
-                controlId="tubeForm.length"
-                onChange={(e) => {
-                  setLength(parseFloat(e.target.value));
-                }}
-              >
-                <Form.Label>Długość [L]:</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
                 controlId="tubeForm.wallThickness"
                 onChange={(e) => {
                   setWallThickness(parseFloat(e.target.value));
@@ -133,6 +123,17 @@ const TubeView = () => {
                 <Form.Label>Grubść ścianki:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="tubeForm.length"
+                onChange={(e) => {
+                  setLength(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Długość [L]:</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+
               <Form.Group
                 className="mb-3"
                 controlId="tubeForm.density_value"
