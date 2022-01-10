@@ -24,10 +24,6 @@ const MaterialItemView = ({ material, density }) => {
             <Col>
               <div className="bg-light border">{material}</div>
             </Col>
-
-            <Col>
-              <div className="bg-light border">{density}</div>
-            </Col>
           </Row>
         </Container>
       </ListGroup.Item>

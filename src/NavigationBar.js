@@ -8,11 +8,14 @@ const NavigationBar = () => {
         <Container>
           <Navbar.Brand href="/">WC</Navbar.Brand>
           <Nav variant="pills" className="me-auto" defaultActiveKey="/">
-            <Nav.Item>              
+            <Nav.Item>
               <Nav.Link href="/cuboid">Płaskowniki</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="/roller">Pręty</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/tubes">Rury</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="/materials">Materiały</Nav.Link>

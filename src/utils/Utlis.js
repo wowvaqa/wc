@@ -39,6 +39,19 @@ export function getRollerMass(diameter, dimH, density) {
 }
 
 /**
+ * Zwraca masę rury
+ * @param {*} diameter Średnica rury
+ * @param {*} dimL Długość rury
+ * @param {*} wallThickness Grubość ścianki
+ * @param {*} denisity gęstość materiału
+ */
+export function getTubeMass(diameter, length, wallThickness, denisity) {
+  const outsideMass = getRollerMass(diameter, length, denisity);
+  const insideMass = getRollerMass(diameter - (wallThickness*2), length, denisity);
+  return outsideMass - insideMass;
+}
+
+/**
  * Zwraca pole powierzchni całkowitej walca
  * @param {} diameter Średnica
  * @param {*} dimH Wysokość

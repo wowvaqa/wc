@@ -7,6 +7,7 @@ import CuboidView from "./views/CuboidView";
 import RollerView from "./views/RollerView";
 import MaterialsView from "./views/MaterialsView";
 import NavigationBar from "./NavigationBar";
+import TubeView from "./views/TubeView";
 import AppModal from "./views/AppModal";
 
 import { useGlobalContext } from "./Context";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<HomeView />} />
           <Route path="/cuboid" element={<CuboidView />} />
           <Route path="/roller" element={<RollerView />} />
+          <Route path="/tubes" element={<TubeView />} />
           <Route path="/materials" element={<MaterialsView />} />
           <Route path="/about" element={<About />} />
         </Routes>
