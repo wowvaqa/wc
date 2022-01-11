@@ -15,7 +15,10 @@ const NavigationBar = () => {
               <Nav.Link href="/roller">Pręty</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/tubes">Rury</Nav.Link>
+              <Nav.Link href="/tubes">Rury okrągłe</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/squaretubes">Rury kwadratowe</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="/materials">Materiały</Nav.Link>

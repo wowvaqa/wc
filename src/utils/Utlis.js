@@ -9,9 +9,9 @@ const Utlis = () => {};
  * @returns Pole powierzchni prostopadłościanu
  */
 export function getCuboidMass(dimA, dimB, dimH, density) {
-  console.log(
-    "A: " + dimA + " B: " + dimB + " H: " + dimH + " DENSITY: " + density
-  );
+  // console.log(
+  //   "A: " + dimA + " B: " + dimB + " H: " + dimH + " DENSITY: " + density
+  // );
 
   let volume = getCuboidVolume(dimA, dimB, dimH);
   console.log("Objętość: " + volume);
@@ -19,6 +19,20 @@ export function getCuboidMass(dimA, dimB, dimH, density) {
   console.log("Masa: " + mass);
 
   return mass;
+}
+
+/**
+ * Liczy pole powierzchni prostopadłościanu
+ * @param {*} dim_A Wymiar boku A
+ * @param {*} dim_B Wymiar boku B
+ * @param {*} dim_L Długość
+ * @param {*} round Czy wynik ma zostać zaokrąglony
+ * @returns Pole powierzchni prostopadłościanu
+ */
+export function getSquareTubeMass(dimA, dimB, dimL, wallThickness, density){
+  const outsideMass = getCuboidMass(dimA, dimB, dimL, density);
+  const insideMass = getCuboidMass(dimA - wallThickness * 2, dimB - wallThickness * 2, dimL, density);
+  return outsideMass - insideMass;
 }
 
 /**

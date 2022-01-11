@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import MaterialSelectView from "./MaterialSelectView";
-import { getTubeMass } from "../utils/Utlis";
+import { getSquareTubeMass } from "../utils/Utlis";
 import { roundNumber } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 import WeightSumView from "./WeightSumView";
-import cuboidImage from "../assetes/tube.svg";
+import squareTubeImage from "../assetes/square_tube.svg";
 import { ToggleButton } from "react-bootstrap";
 
 /**
  * Widok komponentu masy prostopadłościanu
  * @returns Widok komponentu masy prostopadłościanu
  */
-const TubeView = () => {
+const SquareTubeView = () => {
   const refContainer = useRef(null);
   const {
     currentDensity,
@@ -23,38 +23,45 @@ const TubeView = () => {
     setWeightSum,
   } = useGlobalContext();
   const [roundMass, setRoundMass] = useState(false);
-  const [diameter, setDiameter] = useState(0);
-  const [length, setLength] = useState(0);
+  const [dimA, setDimA] = useState(0);
+  const [dimB, setDimB] = useState(0);
+  const [dimL, setDimL] = useState(0);
   const [wallThickness, setWallThickness] = useState(0);
-  const [tubeMass, setTubeMass] = useState(0);
+  const [squareTubeMass, setSquareTubeMass] = useState(0);
 
   /**
    * Liczy masę prostopadłościanu
    */
   const countMass = () => {
     handleError();
-    let mass = getTubeMass(diameter, length, wallThickness, currentDensity);
+    let mass = getSquareTubeMass(
+      dimA,
+      dimB,
+      dimL,
+      wallThickness,
+      currentDensity
+    );
     if (roundMass) {
       mass = roundNumber(mass, 2);
     }
 
-    setTubeMass(mass);
-    addToWeightSum(diameter, length, wallThickness, mass);
+    setSquareTubeMass(mass);
+    addToWeightSum(dimL, dimA, dimB, wallThickness, mass);
   };
 
   /**
-   * Tworzy i dodaje element wg zadanych parametrów do listy przechowujące wszystkie elemnty
-   * @param {*} diameter Średnica
-   * @param {*} dimH Wysokość / długość
+   * Tworzy i dodaje element do listy wszystkich elementów
+   * @param {*} dimL Wysokość
+   * @param {*} dimA Wymiar A
+   * @param {*} dimB Wymiar B
    * @param {*} mass Masa
    */
-  const addToWeightSum = (diameter, length, wallThickness, mass) => {
+  const addToWeightSum = (dimL, dimA, dimB, wallThickness, mass) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: diameter + "x" + length + "x" + wallThickness,
+      dimension: dimA + "x" + dimB + "x" + dimL + " [" + wallThickness + "]",
       elementMass: mass,
     };
-
     setWeightSum([...weightSum, newItem]);
   };
 
@@ -62,18 +69,23 @@ const TubeView = () => {
    * Sprawdza czy wartości wymiarów prostopadłościanu są poprawne
    */
   const handleError = () => {
-    if (Number.isNaN(diameter) || diameter === 0) {
-      setModalText("Niepoprawny wymiar średnicy - sprawdź!");
+    if (Number.isNaN(dimA) || dimA === 0) {
+      setModalText("Niepoprawny wymiar A - sprawdź!");
       setModalShow(true);
     }
 
-    if (Number.isNaN(length) || length === 0) {
-      setModalText("Niepoprawny wymiar długości - sprawdź!");
+    if (Number.isNaN(dimB) || dimB === 0) {
+      setModalText("Niepoprawny wymiar B - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(dimL) || dimL === 0) {
+      setModalText("Niepoprawna długość elementu - sprawdź!");
       setModalShow(true);
     }
 
     if (Number.isNaN(wallThickness) || wallThickness === 0) {
-      setModalText("Niepoprawny wymiar grubości ścianki - sprawdź!");
+      setModalText("Niepoprawna grugość ścianki - sprawdź!");
       setModalShow(true);
     }
 
@@ -95,39 +107,40 @@ const TubeView = () => {
   return (
     <>
       <Container>
-        <h1>Masa rur okrągłych</h1>
+        <h1>Masa rur kwadratowych</h1>
       </Container>
       <Container fluid="md">
         <Row>
           <Col>
             <h4>Wymiary elementu [mm]</h4>
-
             <Form>
               <Form.Group
                 className="mb-3"
-                controlId="tubeForm.diameter"
+                controlId="cuboidForm.a_value"
                 onChange={(e) => {
-                  setDiameter(parseFloat(e.target.value));
+                  setDimA(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Średnica [d]:</Form.Label>
+                <Form.Label>Długość boku [A]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
+
               <Form.Group
                 className="mb-3"
-                controlId="tubeForm.wallThickness"
+                controlId="cuboidForm.b_value"
                 onChange={(e) => {
-                  setWallThickness(parseFloat(e.target.value));
+                  setDimB(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Grubść ścianki:</Form.Label>
+                <Form.Label>Długość boku [B]:</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
+
               <Form.Group
                 className="mb-3"
-                controlId="tubeForm.length"
+                controlId="cuboidForm.l_value"
                 onChange={(e) => {
-                  setLength(parseFloat(e.target.value));
+                  setDimL(parseFloat(e.target.value));
                 }}
               >
                 <Form.Label>Długość [L]:</Form.Label>
@@ -136,7 +149,18 @@ const TubeView = () => {
 
               <Form.Group
                 className="mb-3"
-                controlId="tubeForm.density_value"
+                controlId="cuboidForm.l_value"
+                onChange={(e) => {
+                  setWallThickness(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Grubość ścianki:</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.wall_t_value"
                 onChange={(e) => {
                   setCurrentDensity(parseFloat(e.target.value));
                 }}
@@ -178,7 +202,7 @@ const TubeView = () => {
           <Col>
             <Container>
               <img
-                src={cuboidImage}
+                src={squareTubeImage}
                 alt="cocktail db logo"
                 className="weightElement"
               />
@@ -189,11 +213,11 @@ const TubeView = () => {
       </Container>
       <br></br>
       <Container>
-        <h1>Masa: {tubeMass} kg</h1>
+        <h1>Masa: {squareTubeMass} kg</h1>
       </Container>
       <WeightSumView></WeightSumView>
     </>
   );
 };
 
-export default TubeView;
+export default SquareTubeView;
