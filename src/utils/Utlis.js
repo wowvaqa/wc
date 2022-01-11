@@ -1,6 +1,38 @@
 const Utlis = () => {};
 
 /**
+ * Zwraca masę pręta sześciokątnego równoramiennego
+ * @param {*} dimH Wysokość pręta
+ * @param {*} dimL Długość pręta
+ * @param {*} density Gęstość materiału
+ * @returns
+ */
+export function getHexMass(dimH, dimL, density) {
+  let volume = getHexVolume(dimH, dimL);
+  console.log("Objętość: " + volume);
+  let mass = (volume * parseFloat(density)) / 1000000;
+  console.log("Masa: " + mass);
+  return mass;
+}
+
+/**
+ * Zwraca objętość prętka sześciokątnego foremnego
+ * @param {*} dimH Wysokość pręta
+ * @param {*} dimL Długość pręta
+ * @returns Objętość pręta
+ */
+export function getHexVolume(dimH, dimL) {
+  // Pole trójkąta równobocznego P=(a^2*√3)/4
+  // Wysokość w trójkącie równobocznym h = a√3/2
+  // Przeciwprostokątna trójkąta c = √(h^2 + (c/2)^2)
+  // bok trójkąta równobocznego a = 2*h/√3
+  // Pole sześciokąta foremnego P = (3*a^2*√3)2
+  let a = (2 * parseFloat(dimH)) / Math.sqrt(3);
+  let poleHex = (3 * Math.pow(a, 2) * Math.sqrt(3)) / 2;
+  return poleHex * parseFloat(dimL);
+}
+
+/**
  * Liczy pole powierzchni prostopadłościanu
  * @param {*} dim_A Wymiar boku A
  * @param {*} dim_B Wymiar boku B
@@ -9,10 +41,6 @@ const Utlis = () => {};
  * @returns Pole powierzchni prostopadłościanu
  */
 export function getCuboidMass(dimA, dimB, dimH, density) {
-  // console.log(
-  //   "A: " + dimA + " B: " + dimB + " H: " + dimH + " DENSITY: " + density
-  // );
-
   let volume = getCuboidVolume(dimA, dimB, dimH);
   console.log("Objętość: " + volume);
   let mass = (volume * density) / 1000000;
@@ -22,16 +50,21 @@ export function getCuboidMass(dimA, dimB, dimH, density) {
 }
 
 /**
- * Liczy pole powierzchni prostopadłościanu
+ * Liczy masę rury kwadratowej
  * @param {*} dim_A Wymiar boku A
  * @param {*} dim_B Wymiar boku B
  * @param {*} dim_L Długość
  * @param {*} round Czy wynik ma zostać zaokrąglony
  * @returns Pole powierzchni prostopadłościanu
  */
-export function getSquareTubeMass(dimA, dimB, dimL, wallThickness, density){
+export function getSquareTubeMass(dimA, dimB, dimL, wallThickness, density) {
   const outsideMass = getCuboidMass(dimA, dimB, dimL, density);
-  const insideMass = getCuboidMass(dimA - wallThickness * 2, dimB - wallThickness * 2, dimL, density);
+  const insideMass = getCuboidMass(
+    dimA - wallThickness * 2,
+    dimB - wallThickness * 2,
+    dimL,
+    density
+  );
   return outsideMass - insideMass;
 }
 
@@ -61,7 +94,11 @@ export function getRollerMass(diameter, dimH, density) {
  */
 export function getTubeMass(diameter, length, wallThickness, denisity) {
   const outsideMass = getRollerMass(diameter, length, denisity);
-  const insideMass = getRollerMass(diameter - (wallThickness*2), length, denisity);
+  const insideMass = getRollerMass(
+    diameter - wallThickness * 2,
+    length,
+    denisity
+  );
   return outsideMass - insideMass;
 }
 

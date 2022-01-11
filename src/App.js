@@ -9,6 +9,7 @@ import MaterialsView from "./views/MaterialsView";
 import NavigationBar from "./NavigationBar";
 import TubeView from "./views/TubeView";
 import SquareTubeView from "./views/SquareTubeView"
+import HexView from "./views/HexView";
 import AppModal from "./views/AppModal";
 
 import { useGlobalContext } from "./Context";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/roller" element={<RollerView />} />
           <Route path="/tubes" element={<TubeView />} />
           <Route path="/squaretubes" element={<SquareTubeView />} />
+          <Route path="/hex" element={<HexView />} />
           <Route path="/materials" element={<MaterialsView />} />
           <Route path="/about" element={<About />} />
         </Routes>

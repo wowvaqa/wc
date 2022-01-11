@@ -21,6 +21,9 @@ const NavigationBar = () => {
               <Nav.Link href="/squaretubes">Rury kwadratowe</Nav.Link>
             </Nav.Item>
             <Nav.Item>
+              <Nav.Link href="/hex">Pręty sześciokątne</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
               <Nav.Link href="/materials">Materiały</Nav.Link>
             </Nav.Item>
             <Nav.Item>
