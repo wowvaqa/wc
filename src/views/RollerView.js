@@ -30,6 +30,7 @@ const RollerView = () => {
   } = useGlobalContext();
   const [diameter, setDiameter] = useState(0);
   const [dimH, setDimH] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [rollerMass, setRollerMass] = useState(0);
   const [roundMass, setRoundMass] = useState(false);
 
@@ -38,14 +39,14 @@ const RollerView = () => {
    */
   const countMass = () => {
     handleError();
-    let mass = getRollerMass(diameter, dimH, currentDensity);
+    let mass = getRollerMass(diameter, dimH, currentDensity, amount);
 
     if (roundMass) {
       mass = roundNumber(mass, 2);
     }
 
     setRollerMass(mass);
-    addToWeightSum(diameter, dimH, mass);
+    addToWeightSum(diameter, dimH, mass, amount);
   };
 
   /**
@@ -54,10 +55,10 @@ const RollerView = () => {
    * @param {*} dimH Wysokość / długość
    * @param {*} mass Masa
    */
-  const addToWeightSum = (diameter, dimH, mass) => {
+  const addToWeightSum = (diameter, dimH, mass, amount) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: diameter + "x" + dimH,
+      dimension: diameter + "x" + dimH + " (x" + amount + ")",
       elementMass: mass,
     };
 
@@ -75,6 +76,11 @@ const RollerView = () => {
 
     if (Number.isNaN(dimH) || dimH === 0) {
       setModalText("Niepoprawny wymiar H - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(amount) || amount < 1) {
+      setModalText("Niepoprawny ilość elementów - sprawdź!");
       setModalShow(true);
     }
 
@@ -138,6 +144,17 @@ const RollerView = () => {
                   placeholder="0.0"
                   ref={refContainer}
                 />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.diameter_value"
+                onChange={(e) => {
+                  setAmount(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Ilość:</Form.Label>
+                <Form.Control type="text" placeholder="1" />
               </Form.Group>
             </Form>
             <Row>

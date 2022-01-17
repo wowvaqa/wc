@@ -77,12 +77,13 @@ export function getSquareTubeMass(dimA, dimB, dimL, wallThickness, density) {
  * @param {*} round Czy wynik ma zostać zaokrąglony
  * @returns
  */
-export function getRollerMass(diameter, dimH, density) {
+export function getRollerMass(diameter, dimH, density, amount) {
   // console.log("Diameter: " + diameter + " Height: " + dimH);
   let volume = getRollerVolume(diameter, dimH);
   // console.log("Objętość: " + volume);
   let mass = (volume * density) / 1000000;
   // console.log("Masa: " + mass);
+  mass *= amount;
   return mass;
 }
 
