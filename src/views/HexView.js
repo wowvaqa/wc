@@ -5,7 +5,7 @@ import { getHexMass } from "../utils/Utlis";
 import { roundNumber } from "../utils/Utlis";
 import { useGlobalContext } from "../Context";
 import WeightSumView from "./WeightSumView";
-import cuboidImage from "../assetes/tube.svg";
+import hexImage from "../assetes/hex.svg";
 import { ToggleButton } from "react-bootstrap";
 
 /**
@@ -106,7 +106,7 @@ const HexView = () => {
               >
                 <Form.Label>Wysokość [H]:</Form.Label>
                 <Form.Control type="text" />
-              </Form.Group>              
+              </Form.Group>
               <Form.Group
                 className="mb-3"
                 controlId="hexForm.length"
@@ -162,7 +162,7 @@ const HexView = () => {
           <Col>
             <Container>
               <img
-                src={cuboidImage}
+                src={hexImage}
                 alt="cocktail db logo"
                 className="weightElement"
               />
