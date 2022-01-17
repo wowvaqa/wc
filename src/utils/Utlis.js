@@ -27,8 +27,9 @@ export function getHexVolume(dimH, dimL) {
   // Przeciwprostokątna trójkąta c = √(h^2 + (c/2)^2)
   // bok trójkąta równobocznego a = 2*h/√3
   // Pole sześciokąta foremnego P = (3*a^2*√3)2
-  let a = (2 * parseFloat(dimH)) / Math.sqrt(3);
-  let poleHex = (3 * Math.pow(a, 2) * Math.sqrt(3)) / 2;
+  let a = parseFloat(dimH) / Math.sqrt(3);
+  // let poleHex = (3 * Math.pow(a, 2) * Math.sqrt(3)) / 2;
+  let poleHex = ((3 * Math.sqrt(3)) / 2) * Math.pow(a, 2);
   return poleHex * parseFloat(dimL);
 }
 
