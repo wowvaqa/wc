@@ -25,6 +25,7 @@ const TubeView = () => {
   const [roundMass, setRoundMass] = useState(false);
   const [diameter, setDiameter] = useState(0);
   const [length, setLength] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [wallThickness, setWallThickness] = useState(0);
   const [tubeMass, setTubeMass] = useState(0);
 
@@ -33,13 +34,19 @@ const TubeView = () => {
    */
   const countMass = () => {
     handleError();
-    let mass = getTubeMass(diameter, length, wallThickness, currentDensity);
+    let mass = getTubeMass(
+      diameter,
+      length,
+      wallThickness,
+      currentDensity,
+      amount
+    );
     if (roundMass) {
       mass = roundNumber(mass, 2);
     }
 
     setTubeMass(mass);
-    addToWeightSum(diameter, length, wallThickness, mass);
+    addToWeightSum(diameter, length, wallThickness, mass, amount);
   };
 
   /**
@@ -48,10 +55,11 @@ const TubeView = () => {
    * @param {*} dimH Wysokość / długość
    * @param {*} mass Masa
    */
-  const addToWeightSum = (diameter, length, wallThickness, mass) => {
+  const addToWeightSum = (diameter, length, wallThickness, mass, amount) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: diameter + "x" + length + "x" + wallThickness,
+      dimension:
+        diameter + "x" + length + "x" + wallThickness + " (x" + amount + ")",
       elementMass: mass,
     };
 
@@ -74,6 +82,11 @@ const TubeView = () => {
 
     if (Number.isNaN(wallThickness) || wallThickness === 0) {
       setModalText("Niepoprawny wymiar grubości ścianki - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(amount) || amount < 1) {
+      setModalText("Niepoprawna ilość - sprawdź!");
       setModalShow(true);
     }
 
@@ -147,6 +160,17 @@ const TubeView = () => {
                   placeholder="0.0"
                   ref={refContainer}
                 />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="tubeForm.amount_value"
+                onChange={(e) => {
+                  setAmount(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Ilość:</Form.Label>
+                <Form.Control type="text" placeholder="1" />
               </Form.Group>
             </Form>
             <Row>

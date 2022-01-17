@@ -94,14 +94,15 @@ export function getRollerMass(diameter, dimH, density, amount) {
  * @param {*} wallThickness Grubość ścianki
  * @param {*} denisity gęstość materiału
  */
-export function getTubeMass(diameter, length, wallThickness, denisity) {
-  const outsideMass = getRollerMass(diameter, length, denisity);
+export function getTubeMass(diameter, length, wallThickness, denisity, amount) {
+  const outsideMass = getRollerMass(diameter, length, denisity, 1);
   const insideMass = getRollerMass(
     diameter - wallThickness * 2,
     length,
-    denisity
+    denisity,
+    1
   );
-  return outsideMass - insideMass;
+  return (outsideMass - insideMass) * amount;
 }
 
 /**
