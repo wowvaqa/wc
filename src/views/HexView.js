@@ -52,7 +52,7 @@ const HexView = () => {
   const addToWeightSum = (diameter, length, mass, amount) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: diameter + "x" + length + "x" + " (x" + amount + ")",
+      dimension: diameter + "x" + length + " (x" + amount + ")",
       elementMass: mass,
     };
 
