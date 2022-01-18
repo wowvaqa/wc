@@ -153,7 +153,7 @@ const RollerView = () => {
                   setAmount(parseFloat(e.target.value));
                 }}
               >
-                <Form.Label>Ilość:</Form.Label>
+                <Form.Label>Ilość [szt]:</Form.Label>
                 <Form.Control type="text" placeholder="1" />
               </Form.Group>
             </Form>
