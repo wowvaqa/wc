@@ -26,6 +26,7 @@ const CuboidView = () => {
   const [dimA, setDimA] = useState(0);
   const [dimB, setDimB] = useState(0);
   const [dimH, setDimH] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [cuboidMass, setCuboidMass] = useState(0);
 
   /**
@@ -33,13 +34,13 @@ const CuboidView = () => {
    */
   const countMass = () => {
     handleError();
-    let mass = getCuboidMass(dimA, dimB, dimH, currentDensity);
+    let mass = getCuboidMass(dimA, dimB, dimH, currentDensity, amount);
     if (roundMass) {
       mass = roundNumber(mass, 2);
     }
 
     setCuboidMass(mass);
-    addToWeightSum(dimH, dimA, dimB, mass);
+    addToWeightSum(dimH, dimA, dimB, mass, amount);
   };
 
   /**
@@ -48,11 +49,12 @@ const CuboidView = () => {
    * @param {*} dimA Wymiar A
    * @param {*} dimB Wymiar B
    * @param {*} mass Masa
+   * @param {*} amount Ilość
    */
-  const addToWeightSum = (dimH, dimA, dimB, mass) => {
+  const addToWeightSum = (dimH, dimA, dimB, mass, amount) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: dimH + "x" + dimA + "x" + dimB,
+      dimension: dimH + "x" + dimA + "x" + dimB + " (x" + amount + ")",
       elementMass: mass,
     };
     setWeightSum([...weightSum, newItem]);
@@ -73,6 +75,11 @@ const CuboidView = () => {
     }
 
     if (Number.isNaN(dimH) || dimH === 0) {
+      setModalText("Niepoprawny wymiar H - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(amount) || amount < 1) {
       setModalText("Niepoprawny wymiar H - sprawdź!");
       setModalShow(true);
     }
@@ -147,6 +154,17 @@ const CuboidView = () => {
                   ref={refContainer}
                 />
               </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.amount_value"
+                onChange={(e) => {
+                  setAmount(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Ilość [szt.]:</Form.Label>
+                <Form.Control type="text" placeholder="1" />
+              </Form.Group>
             </Form>
             <Row>
               <Col>
@@ -163,14 +181,14 @@ const CuboidView = () => {
                 </ToggleButton>
               </Col>
               <Col sm={8}>
-                  <Button
-                    variant="success"
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => countMass()}
-                  >
-                    Oblicz masę
-                  </Button>
+                <Button
+                  variant="success"
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => countMass()}
+                >
+                  Oblicz masę
+                </Button>
               </Col>
             </Row>
           </Col>

@@ -26,19 +26,20 @@ const HexView = () => {
   const [dimH, setDimH] = useState(0);
   const [length, setLength] = useState(0);
   const [hexMass, setHexMass] = useState(0);
+  const [amount, setAmount] = useState(1);
 
   /**
    * Liczy masę prostopadłościanu
    */
   const countMass = () => {
     handleError();
-    let mass = getHexMass(dimH, length, currentDensity);
+    let mass = getHexMass(dimH, length, currentDensity, amount);
     if (roundMass) {
       mass = roundNumber(mass, 2);
     }
 
     setHexMass(mass);
-    addToWeightSum(dimH, length, mass);
+    addToWeightSum(dimH, length, mass, amount);
   };
 
   /**
@@ -46,11 +47,12 @@ const HexView = () => {
    * @param {*} diameter Średnica
    * @param {*} dimH Wysokość / długość
    * @param {*} mass Masa
+   * @param {*} amount Ilość
    */
-  const addToWeightSum = (diameter, length, mass) => {
+  const addToWeightSum = (diameter, length, mass, amount) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: diameter + "x" + length + "x",
+      dimension: diameter + "x" + length + "x" + " (x" + amount + ")",
       elementMass: mass,
     };
 
@@ -68,6 +70,11 @@ const HexView = () => {
 
     if (Number.isNaN(length) || length === 0) {
       setModalText("Niepoprawny wymiar długości - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(amount) || amount < 1) {
+      setModalText("Niepoprawna ilość - sprawdź!");
       setModalShow(true);
     }
 
@@ -130,6 +137,20 @@ const HexView = () => {
                   type="text"
                   placeholder="0.0"
                   ref={refContainer}
+                />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="hexForm.amount_value"
+                onChange={(e) => {
+                  setAmount(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Ilość [szt]:</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="1"
                 />
               </Form.Group>
             </Form>

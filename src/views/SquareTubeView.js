@@ -27,6 +27,7 @@ const SquareTubeView = () => {
   const [dimB, setDimB] = useState(0);
   const [dimL, setDimL] = useState(0);
   const [wallThickness, setWallThickness] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [squareTubeMass, setSquareTubeMass] = useState(0);
 
   /**
@@ -39,14 +40,15 @@ const SquareTubeView = () => {
       dimB,
       dimL,
       wallThickness,
-      currentDensity
+      currentDensity,
+      amount
     );
     if (roundMass) {
       mass = roundNumber(mass, 2);
     }
 
     setSquareTubeMass(mass);
-    addToWeightSum(dimL, dimA, dimB, wallThickness, mass);
+    addToWeightSum(dimL, dimA, dimB, wallThickness, mass, amount);
   };
 
   /**
@@ -55,11 +57,23 @@ const SquareTubeView = () => {
    * @param {*} dimA Wymiar A
    * @param {*} dimB Wymiar B
    * @param {*} mass Masa
+   * @param {*} amount Ilość
    */
-  const addToWeightSum = (dimL, dimA, dimB, wallThickness, mass) => {
+  const addToWeightSum = (dimL, dimA, dimB, wallThickness, mass, amount) => {
     const newItem = {
       id: weightSum.length + 1,
-      dimension: dimA + "x" + dimB + "x" + dimL + " [" + wallThickness + "]",
+      dimension:
+        dimA +
+        "x" +
+        dimB +
+        "x" +
+        dimL +
+        " [" +
+        wallThickness +
+        "]" +
+        " (x" +
+        amount +
+        ")",
       elementMass: mass,
     };
     setWeightSum([...weightSum, newItem]);
@@ -86,6 +100,11 @@ const SquareTubeView = () => {
 
     if (Number.isNaN(wallThickness) || wallThickness === 0) {
       setModalText("Niepoprawna grugość ścianki - sprawdź!");
+      setModalShow(true);
+    }
+
+    if (Number.isNaN(amount) || amount < 1) {
+      setModalText("Niepoprawna ilość - sprawdź!");
       setModalShow(true);
     }
 
@@ -171,6 +190,17 @@ const SquareTubeView = () => {
                   placeholder="0.0"
                   ref={refContainer}
                 />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="cuboidForm.amount_value"
+                onChange={(e) => {
+                  setAmount(parseFloat(e.target.value));
+                }}
+              >
+                <Form.Label>Ilość [szt]:</Form.Label>
+                <Form.Control type="text" placeholder="1" />
               </Form.Group>
             </Form>
             <Row>

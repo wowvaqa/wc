@@ -5,14 +5,15 @@ const Utlis = () => {};
  * @param {*} dimH Wysokość pręta
  * @param {*} dimL Długość pręta
  * @param {*} density Gęstość materiału
+ * @param {*} amount Ilość
  * @returns
  */
-export function getHexMass(dimH, dimL, density) {
+export function getHexMass(dimH, dimL, density, amount) {
   let volume = getHexVolume(dimH, dimL);
   console.log("Objętość: " + volume);
   let mass = (volume * parseFloat(density)) / 1000000;
   console.log("Masa: " + mass);
-  return mass;
+  return mass * amount;
 }
 
 /**
@@ -39,15 +40,16 @@ export function getHexVolume(dimH, dimL) {
  * @param {*} dim_B Wymiar boku B
  * @param {*} dim_H Wymiar wysokości H
  * @param {*} round Czy wynik ma zostać zaokrąglony
+ * @param {*} amount Ilość
  * @returns Pole powierzchni prostopadłościanu
  */
-export function getCuboidMass(dimA, dimB, dimH, density) {
+export function getCuboidMass(dimA, dimB, dimH, density, amount) {
   let volume = getCuboidVolume(dimA, dimB, dimH);
   console.log("Objętość: " + volume);
   let mass = (volume * density) / 1000000;
   console.log("Masa: " + mass);
 
-  return mass;
+  return mass * amount;
 }
 
 /**
@@ -58,15 +60,22 @@ export function getCuboidMass(dimA, dimB, dimH, density) {
  * @param {*} round Czy wynik ma zostać zaokrąglony
  * @returns Pole powierzchni prostopadłościanu
  */
-export function getSquareTubeMass(dimA, dimB, dimL, wallThickness, density) {
-  const outsideMass = getCuboidMass(dimA, dimB, dimL, density);
+export function getSquareTubeMass(
+  dimA,
+  dimB,
+  dimL,
+  wallThickness,
+  density,
+  amount
+) {
+  const outsideMass = getCuboidMass(dimA, dimB, dimL, density, 1);
   const insideMass = getCuboidMass(
     dimA - wallThickness * 2,
     dimB - wallThickness * 2,
     dimL,
-    density
+    density, 1
   );
-  return outsideMass - insideMass;
+  return (outsideMass - insideMass) * amount;
 }
 
 /**
