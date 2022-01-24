@@ -108,7 +108,7 @@ const HexView = () => {
                 className="mb-3"
                 controlId="hexForm.height"
                 onChange={(e) => {
-                  setDimH(parseFloat(e.target.value));
+                  setDimH(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Wysokość [H]:</Form.Label>
@@ -118,7 +118,7 @@ const HexView = () => {
                 className="mb-3"
                 controlId="hexForm.length"
                 onChange={(e) => {
-                  setLength(parseFloat(e.target.value));
+                  setLength(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość [L]:</Form.Label>
@@ -129,7 +129,9 @@ const HexView = () => {
                 className="mb-3"
                 controlId="hexForm.density_value"
                 onChange={(e) => {
-                  setCurrentDensity(parseFloat(e.target.value));
+                  setCurrentDensity(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Gęstość [g/cm3]:</Form.Label>
@@ -144,7 +146,7 @@ const HexView = () => {
                 className="mb-3"
                 controlId="hexForm.amount_value"
                 onChange={(e) => {
-                  setAmount(parseFloat(e.target.value));
+                  setAmount(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Ilość [szt]:</Form.Label>

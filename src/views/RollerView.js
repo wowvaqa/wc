@@ -114,7 +114,7 @@ const RollerView = () => {
                 className="mb-3"
                 controlId="cuboidForm.h_value"
                 onChange={(e) => {
-                  setDimH(parseFloat(e.target.value));
+                  setDimH(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość [L]:</Form.Label>
@@ -124,7 +124,7 @@ const RollerView = () => {
                 className="mb-3"
                 controlId="cuboidForm.diameter_value"
                 onChange={(e) => {
-                  setDiameter(parseFloat(e.target.value));
+                  setDiameter(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Średnica [d]:</Form.Label>
@@ -135,7 +135,9 @@ const RollerView = () => {
                 className="mb-3"
                 controlId="cuboidForm.density_value"
                 onChange={(e) => {
-                  setCurrentDensity(parseFloat(e.target.value));
+                  setCurrentDensity(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Gęstość [g/cm3]:</Form.Label>
@@ -150,7 +152,7 @@ const RollerView = () => {
                 className="mb-3"
                 controlId="cuboidForm.diameter_value"
                 onChange={(e) => {
-                  setAmount(parseFloat(e.target.value));
+                  setAmount(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Ilość [szt]:</Form.Label>

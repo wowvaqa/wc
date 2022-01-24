@@ -137,7 +137,7 @@ const SquareTubeView = () => {
                 className="mb-3"
                 controlId="cuboidForm.a_value"
                 onChange={(e) => {
-                  setDimA(parseFloat(e.target.value));
+                  setDimA(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość boku [A]:</Form.Label>
@@ -148,7 +148,7 @@ const SquareTubeView = () => {
                 className="mb-3"
                 controlId="cuboidForm.b_value"
                 onChange={(e) => {
-                  setDimB(parseFloat(e.target.value));
+                  setDimB(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość boku [B]:</Form.Label>
@@ -159,7 +159,7 @@ const SquareTubeView = () => {
                 className="mb-3"
                 controlId="cuboidForm.l_value"
                 onChange={(e) => {
-                  setDimL(parseFloat(e.target.value));
+                  setDimL(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość [L]:</Form.Label>
@@ -170,7 +170,9 @@ const SquareTubeView = () => {
                 className="mb-3"
                 controlId="cuboidForm.l_value"
                 onChange={(e) => {
-                  setWallThickness(parseFloat(e.target.value));
+                  setWallThickness(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Grubość ścianki:</Form.Label>
@@ -181,7 +183,9 @@ const SquareTubeView = () => {
                 className="mb-3"
                 controlId="cuboidForm.wall_t_value"
                 onChange={(e) => {
-                  setCurrentDensity(parseFloat(e.target.value));
+                  setCurrentDensity(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Gęstość [g/cm3]:</Form.Label>
@@ -196,7 +200,7 @@ const SquareTubeView = () => {
                 className="mb-3"
                 controlId="cuboidForm.amount_value"
                 onChange={(e) => {
-                  setAmount(parseFloat(e.target.value));
+                  setAmount(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Ilość [szt]:</Form.Label>

@@ -120,7 +120,7 @@ const TubeView = () => {
                 className="mb-3"
                 controlId="tubeForm.diameter"
                 onChange={(e) => {
-                  setDiameter(parseFloat(e.target.value));
+                  setDiameter(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Średnica [d]:</Form.Label>
@@ -130,7 +130,9 @@ const TubeView = () => {
                 className="mb-3"
                 controlId="tubeForm.wallThickness"
                 onChange={(e) => {
-                  setWallThickness(parseFloat(e.target.value));
+                  setWallThickness(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Grubść ścianki:</Form.Label>
@@ -140,7 +142,7 @@ const TubeView = () => {
                 className="mb-3"
                 controlId="tubeForm.length"
                 onChange={(e) => {
-                  setLength(parseFloat(e.target.value));
+                  setLength(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość [L]:</Form.Label>
@@ -151,7 +153,9 @@ const TubeView = () => {
                 className="mb-3"
                 controlId="tubeForm.density_value"
                 onChange={(e) => {
-                  setCurrentDensity(parseFloat(e.target.value));
+                  setCurrentDensity(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Gęstość [g/cm3]:</Form.Label>
@@ -166,7 +170,7 @@ const TubeView = () => {
                 className="mb-3"
                 controlId="tubeForm.amount_value"
                 onChange={(e) => {
-                  setAmount(parseFloat(e.target.value));
+                  setAmount(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Ilość [szt]:</Form.Label>

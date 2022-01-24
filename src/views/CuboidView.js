@@ -114,7 +114,7 @@ const CuboidView = () => {
                 className="mb-3"
                 controlId="cuboidForm.h_value"
                 onChange={(e) => {
-                  setDimH(parseFloat(e.target.value));
+                  setDimH(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Wysokość [H]:</Form.Label>
@@ -124,7 +124,7 @@ const CuboidView = () => {
                 className="mb-3"
                 controlId="cuboidForm.a_value"
                 onChange={(e) => {
-                  setDimA(parseFloat(e.target.value));
+                  setDimA(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość boku [A]:</Form.Label>
@@ -134,7 +134,7 @@ const CuboidView = () => {
                 className="mb-3"
                 controlId="cuboidForm.b_value"
                 onChange={(e) => {
-                  setDimB(parseFloat(e.target.value));
+                  setDimB(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Długość boku [B]:</Form.Label>
@@ -144,7 +144,9 @@ const CuboidView = () => {
                 className="mb-3"
                 controlId="cuboidForm.density_value"
                 onChange={(e) => {
-                  setCurrentDensity(parseFloat(e.target.value));
+                  setCurrentDensity(
+                    parseFloat(e.target.value.replace(",", "."))
+                  );
                 }}
               >
                 <Form.Label>Gęstość [g/cm3]:</Form.Label>
@@ -159,7 +161,7 @@ const CuboidView = () => {
                 className="mb-3"
                 controlId="cuboidForm.amount_value"
                 onChange={(e) => {
-                  setAmount(parseFloat(e.target.value));
+                  setAmount(parseFloat(e.target.value.replace(",", ".")));
                 }}
               >
                 <Form.Label>Ilość [szt]:</Form.Label>

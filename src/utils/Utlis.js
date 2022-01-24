@@ -23,13 +23,7 @@ export function getHexMass(dimH, dimL, density, amount) {
  * @returns Objętość pręta
  */
 export function getHexVolume(dimH, dimL) {
-  // Pole trójkąta równobocznego P=(a^2*√3)/4
-  // Wysokość w trójkącie równobocznym h = a√3/2
-  // Przeciwprostokątna trójkąta c = √(h^2 + (c/2)^2)
-  // bok trójkąta równobocznego a = 2*h/√3
-  // Pole sześciokąta foremnego P = (3*a^2*√3)2
   let a = parseFloat(dimH) / Math.sqrt(3);
-  // let poleHex = (3 * Math.pow(a, 2) * Math.sqrt(3)) / 2;
   let poleHex = ((3 * Math.sqrt(3)) / 2) * Math.pow(a, 2);
   return poleHex * parseFloat(dimL);
 }
@@ -131,7 +125,7 @@ export function getRollerVolume(diameter, dimH) {
  * @param {*} dimH Wysokość
  * @returns Objętość [jed]3
  */
-export function getCuboidVolume(dimA, dimB, dimH) {
+export function getCuboidVolume(dimA, dimB, dimH) {  
   return parseFloat(dimA) * parseFloat(dimB) * parseFloat(dimH);
 }
 
