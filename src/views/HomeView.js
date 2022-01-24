@@ -26,10 +26,10 @@ const HomeView = () => {
         <Row xs={1} md={2} className="g-3">
           <Col>
             <Card border="secondary" style={{ width: "15rem" }}>
-              <Card.Header>Pręty sześciokątne</Card.Header>
-              <Card.Img variant="top" src={hexImage} />
+              <Card.Header>Płaskowniki</Card.Header>
+              <Card.Img variant="top" src={cuboidImage} />
               <Card.Body>
-                <Card.Link href="/hex">Masa prętów sześciokątnych</Card.Link>
+                <Card.Link href="/cuboid">Masa płaskowników</Card.Link>
               </Card.Body>
             </Card>
           </Col>
@@ -44,19 +44,19 @@ const HomeView = () => {
           </Col>
           <Col>
             <Card border="secondary" style={{ width: "15rem" }}>
-              <Card.Header>Rury okrągłe</Card.Header>
-              <Card.Img variant="top" src={tubeImage} />
+              <Card.Header>Pręty sześciokątne</Card.Header>
+              <Card.Img variant="top" src={hexImage} />
               <Card.Body>
-                <Card.Link href="/tubes">Masa rur okrągłych</Card.Link>
+                <Card.Link href="/hex">Masa prętów sześciokątnych</Card.Link>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card border="secondary" style={{ width: "15rem" }}>
-              <Card.Header>Płaskowniki</Card.Header>
-              <Card.Img variant="top" src={cuboidImage} />
+              <Card.Header>Rury okrągłe</Card.Header>
+              <Card.Img variant="top" src={tubeImage} />
               <Card.Body>
-                <Card.Link href="/cuboid">Masa płaskowników</Card.Link>
+                <Card.Link href="/tubes">Masa rur okrągłych</Card.Link>
               </Card.Body>
             </Card>
           </Col>
