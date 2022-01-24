@@ -25,46 +25,46 @@ const HomeView = () => {
       <Container fluid="md">
         <Row xs={1} md={2} className="g-3">
           <Col>
-            <Card style={{ width: "30rem" }}>
+            <Card border="secondary" style={{ width: "15rem" }}>
+              <Card.Header>Pręty sześciokątne</Card.Header>
               <Card.Img variant="top" src={hexImage} />
               <Card.Body>
-                <Card.Title>Pręty sześciokątne</Card.Title>
                 <Card.Link href="/hex">Masa prętów sześciokątnych</Card.Link>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: "30rem" }}>
+            <Card border="secondary" style={{ width: "15rem" }}>
+              <Card.Header>Pręty okrągłe</Card.Header>
               <Card.Img variant="top" src={rollerImage} />
               <Card.Body>
-                <Card.Title>Pręty okrągłe</Card.Title>
                 <Card.Link href="/roller">Masa prętów okrągłych</Card.Link>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: "30rem" }}>
+            <Card border="secondary" style={{ width: "15rem" }}>
+              <Card.Header>Rury okrągłe</Card.Header>
               <Card.Img variant="top" src={tubeImage} />
               <Card.Body>
-                <Card.Title>Rury okrągłe</Card.Title>
                 <Card.Link href="/tubes">Masa rur okrągłych</Card.Link>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: "30rem" }}>
+            <Card border="secondary" style={{ width: "15rem" }}>
+              <Card.Header>Płaskowniki</Card.Header>
               <Card.Img variant="top" src={cuboidImage} />
               <Card.Body>
-                <Card.Title>Płaskowniki</Card.Title>
                 <Card.Link href="/cuboid">Masa płaskowników</Card.Link>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: "30rem" }}>
+            <Card border="secondary" style={{ width: "15rem" }}>
+              <Card.Header>Rury kwadratowe</Card.Header>
               <Card.Img variant="top" src={squareTubeImage} />
               <Card.Body>
-                <Card.Title>Rury kwadratowe</Card.Title>
                 <Card.Link href="/squaretubes">Masa rur kwadratowych</Card.Link>
               </Card.Body>
             </Card>
